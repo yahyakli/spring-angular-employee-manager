@@ -26,7 +26,8 @@ public class EmployeeService {
     }
 
     public List<Employee> getAllEmployees(){
-        return employeeRepo.findAll();
+        List<Employee> employees = employeeRepo.findAll();
+        return employees;
     }
 
     public Employee updateEmployee(Employee employee, String id) {
