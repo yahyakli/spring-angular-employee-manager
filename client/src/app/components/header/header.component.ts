@@ -12,5 +12,6 @@ export class HeaderComponent {
 
   toggleShowModale() {
     this.showModal.set(!this.showModal());
+    console.log(this.showModal());
   }
 }
