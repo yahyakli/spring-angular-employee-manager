@@ -25,13 +25,11 @@ export class AppComponent implements OnInit {
     this.employeeService.getEmployees().pipe(
       catchError(err => {
         console.log(err);
-        alert(err.message)
+        alert(err.message);
         throw err;
       })
     ).subscribe(employees => {
       this.employees.set(employees);
-      console.log(employees);
     })
   }
-
 }
