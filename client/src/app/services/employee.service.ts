@@ -2,12 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Employee } from '../model/employee';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeeService {
-  private backend_url = '';
+  private backend_url = environment.backend_url;
   private http = inject(HttpClient)
 
   public getEmployees(): Observable<Employee[]> {
