@@ -11,8 +11,6 @@ export class AddEmployeeComponent {
   toggleShowModal = output<boolean>();
   employeeService = inject(EmployeeService);
 
-  myForm = new FormGrou
-
   handleSubmit(e: Event){
     e.preventDefault();
     

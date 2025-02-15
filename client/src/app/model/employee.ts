@@ -1,8 +1,8 @@
 export interface Employee {
-    id: String,
-    name: String,
-    email: String,
-    jobTitle: String,
-    phone: String,
-    imageUrl: String,
+    id: string,
+    name: string,
+    email: string,
+    jobTitle: string,
+    phone: string,
+    imageUrl: string,
 }
