@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 import { Employee } from '../model/employee';
 import { environment } from '../../environments/environment';
 
@@ -30,4 +30,17 @@ export class EmployeeService {
   public deleteEmployee(id: string): Observable<void> {
     return this.http.delete<void>(`${this.backend_url}/employee/${id}`);
   }
+
+  public getEmployeesfunc(): Observable<Employee[]> {
+    return this.getEmployees().pipe(
+      catchError(err => {
+        console.error(err);
+        alert(err.message);
+        return throwError(() => err);
+      })
+    );
+  }
+
+  public
 }
+

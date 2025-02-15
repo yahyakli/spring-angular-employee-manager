@@ -19,20 +19,24 @@ export class HomeComponent implements OnInit {
     this.showModal.set(employeeId);
   }
 
-  ngOnInit(): void {
-    this.getEmployees();
-  }
-
-  public getEmployees(): void {
-    this.employeeService.getEmployees().pipe(
-      catchError(err => {
-        console.log(err);
-        alert(err.message);
-        throw err;
-      })
-    ).subscribe(employees => {
-      this.employees.set(employees);
+  updateEmployee(employee: Employee) {
+    this.employees().forEach(emp => {
+      if (emp.id === employee.id) {
+        emp.name = employee.name;
+        emp.email = employee.email;
+        emp.phone = employee.phone;
+        emp.jobTitle = employee.jobTitle;
+        emp.imageUrl = employee.imageUrl;
+      }
     })
   }
+
+  ngOnInit(): void {
+    this.employeeService.getEmployeesfunc().subscribe(employees => {
+      this.employees.set(employees);
+    });
+  }
+
+
 
 }

@@ -2,7 +2,7 @@
   <div class="max-w-7xl mx-auto px-4">
     <h2 class="text-xl font-semibold text-gray-700 mb-6">Employee Directory</h2>
     @if (showModal()) {
-      <app-edit-employee [employeeId]="showModal()" (onClose)="toggleShowModal('')" />
+      <app-edit-employee [employeeId]="showModal()" (updatedEmployee)="updateEmployee($event)" (onClose)="toggleShowModal('')" />
     }
     <div
       class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"

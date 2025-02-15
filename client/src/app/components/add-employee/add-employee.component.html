@@ -1,7 +1,7 @@
 <div
   class="flex items-center justify-center w-screen h-screen bg-black/50 fixed z-20 top-0 left-0"
 >
-  <form (submit)="handleSubmit($event)" class="w-full max-w-lg relative bg-white px-16 py-12 rounded-lg">
+  <form (submit)="handleSubmit($event)" [formGroup]="employeeForm" class="w-full max-w-lg relative bg-white px-16 py-12 rounded-lg">
     <span (click)="closeClick()" class="absolute top-2 right-3 text-red-600 font-bold hover:text-red-400 text-2xl duration-200 cursor-pointer">X</span>
     <div class="text-center mb-5">
       <h2 class="text-2xl font-bold">Add Employee</h2>

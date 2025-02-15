@@ -1,12 +1,12 @@
 import { Component, inject, input, OnInit, output, signal } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { EmployeeService } from '../../services/employee.service';
 import { Employee } from '../../model/employee';
 import { catchError } from 'rxjs';
 
 @Component({
   selector: 'app-edit-employee',
-  imports: [],
+  imports: [ReactiveFormsModule],
   templateUrl: './edit-employee.component.html',
   styleUrl: './edit-employee.component.css'
 })
@@ -14,6 +14,7 @@ export class EditEmployeeComponent implements OnInit {
   employeeId = input<string>();
   employee = signal<Employee | null>(null);
   onClose = output();
+  updatedEmployee = output<Employee>();
   employeeService = inject(EmployeeService);
   private fb = inject(FormBuilder);
 
@@ -58,24 +59,20 @@ export class EditEmployeeComponent implements OnInit {
   }
 
   handleSubmit(e: Event) {
+    e.preventDefault();
     const id = this.employeeId();
     if (!id) {
       console.error("Employee ID is missing!");
       return;
     }
-    e.preventDefault();
     if (this.employeeForm.valid) {
-      const updatedEmployee: Employee = {
-        id: this.employeeId()!,
-        ...this.employeeForm.value
-      };
-
       this.employeeService.updateEmployee(this.employeeForm.value, id).pipe(
         catchError(err => {
           console.error('Error updating employee:', err);
           throw err;
         })
-      ).subscribe(() => {
+      ).subscribe((employee) => {
+        this.updatedEmployee.emit(employee);
         this.closeModal();
       });
     }

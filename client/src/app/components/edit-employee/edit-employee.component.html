@@ -1,5 +1,5 @@
 <div class="flex items-center justify-center w-screen h-screen bg-black/50 fixed z-20 top-0 left-0">
-  <form [] class="w-full max-w-lg relative bg-white px-16 py-12 rounded-lg">
+  <form [formGroup]="employeeForm" (ngSubmit)="handleSubmit($event)" class="w-full max-w-lg relative bg-white px-16 py-12 rounded-lg">
     <span (click)="closeModal()" class="absolute top-2 right-3 text-red-600 font-bold hover:text-red-400 text-2xl duration-200 cursor-pointer">X</span>
     <div class="text-center mb-5">
       <h2 class="text-2xl font-bold">Edit Employee</h2>
