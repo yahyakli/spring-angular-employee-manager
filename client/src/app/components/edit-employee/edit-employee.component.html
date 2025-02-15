@@ -1,5 +1,5 @@
 <div class="flex items-center justify-center w-screen h-screen bg-black/50 fixed z-20 top-0 left-0">
-  <form [formGroup]="employeeForm" (ngSubmit)="handleSubmit($event)" class="w-full max-w-lg relative bg-white px-16 py-12 rounded-lg">
+  <form [] class="w-full max-w-lg relative bg-white px-16 py-12 rounded-lg">
     <span (click)="closeModal()" class="absolute top-2 right-3 text-red-600 font-bold hover:text-red-400 text-2xl duration-200 cursor-pointer">X</span>
     <div class="text-center mb-5">
       <h2 class="text-2xl font-bold">Edit Employee</h2>
@@ -15,6 +15,7 @@
           class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
           id="grid-name"
           type="text"
+          value="{{employee()?.name}}"
           placeholder="Enter Name ..."
         />
       </div>
@@ -27,6 +28,7 @@
           class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
           id="grid-email"
           type="email"
+          value="{{employee()?.email}}"
           placeholder="Enter Email ..."
         />
       </div>
@@ -39,6 +41,7 @@
           class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
           id="grid-phone"
           type="tel"
+          value="{{employee()?.phone}}"
           placeholder="Enter Phone ..."
         />
       </div>
@@ -51,6 +54,7 @@
           class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
           id="grid-job"
           type="text"
+          value="{{employee()?.jobTitle}}"
           placeholder="Enter Job Title ..."
         />
       </div>
@@ -63,13 +67,13 @@
           class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
           id="grid-image"
           type="text"
+          value="{{employee()?.imageUrl}}"
           placeholder="Enter Image Url ..."
         />
       </div>
       <div class="flex justify-center w-full mt-6">
         <button 
           type="submit" 
-          [disabled]="!employeeForm.valid"
           class="bg-green-600 text-white px-5 py-2 rounded-lg hover:text-black hover:bg-white hover:outline outline-black duration-300 disabled:bg-gray-400 disabled:hover:text-white disabled:hover:bg-gray-400 disabled:hover:outline-none">
           Submit
         </button>

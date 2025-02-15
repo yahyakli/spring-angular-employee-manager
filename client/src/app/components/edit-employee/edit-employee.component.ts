@@ -6,6 +6,7 @@ import { catchError } from 'rxjs';
 
 @Component({
   selector: 'app-edit-employee',
+  imports: [],
   templateUrl: './edit-employee.component.html',
   styleUrl: './edit-employee.component.css'
 })
@@ -57,6 +58,11 @@ export class EditEmployeeComponent implements OnInit {
   }
 
   handleSubmit(e: Event) {
+    const id = this.employeeId();
+    if (!id) {
+      console.error("Employee ID is missing!");
+      return;
+    }
     e.preventDefault();
     if (this.employeeForm.valid) {
       const updatedEmployee: Employee = {
@@ -64,7 +70,7 @@ export class EditEmployeeComponent implements OnInit {
         ...this.employeeForm.value
       };
 
-      this.employeeService.updateEmployee(updatedEmployee).pipe(
+      this.employeeService.updateEmployee(this.employeeForm.value, id).pipe(
         catchError(err => {
           console.error('Error updating employee:', err);
           throw err;
