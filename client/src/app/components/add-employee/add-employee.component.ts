@@ -17,10 +17,10 @@ export class AddEmployeeComponent {
 
   employeeForm: FormGroup = this.fb.group({
     name: ['', Validators.required],
-    email: ['', Validators.required],
+    email: ['', [Validators.required, Validators.email]],
     phone: ['', Validators.required],
     jobTitle: ['', Validators.required],
-    imageUrl: ['', Validators.required],
+    imageUrl: ['', Validators.required]
   })
 
   handleSubmit(e: Event){
