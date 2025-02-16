@@ -4,6 +4,9 @@
     @if (showModal()) {
       <app-edit-employee [employeeId]="showModal()" (updatedEmployee)="updateEmployee($event)" (onClose)="toggleShowModal('')" />
     }
+    @if (selectedDelete()) {
+      <app-delete-modal (onClose)="setSelectedDelete('')" [employeeId]="selectedDelete()" />
+    }
     <div
       class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
     >
@@ -96,6 +99,7 @@
             </svg>
           </button>
           <button
+            (click)="setSelectedDelete(emp.id)"
             class="text-red-600 hover:text-red-800 transition-colors duration-200"
           >
             <svg

@@ -63,9 +63,4 @@ export class EmployeeService {
       })
     );
   }
-
-  public refreshEmployees() {
-    return this.getEmployeesFromApi();
-  }
-
 }
