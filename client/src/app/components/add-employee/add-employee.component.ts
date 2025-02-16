@@ -1,4 +1,4 @@
-import { Component, inject, input, output } from '@angular/core';
+import { Component, inject, input, output, signal } from '@angular/core';
 import { EmployeeService } from '../../services/employee.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { catchError } from 'rxjs';
@@ -13,12 +13,11 @@ import { Employee } from '../../model/employee';
 export class AddEmployeeComponent {
   toggleShowModal = output<boolean>();
   employeeService = inject(EmployeeService);
-  addedEmployee = output<Employee>();
   private fb = inject(FormBuilder);
 
   employeeForm: FormGroup = this.fb.group({
     name: ['', Validators.required],
-    email: ['', Validators.required, Validators.email],
+    email: ['', Validators.required],
     phone: ['', Validators.required],
     jobTitle: ['', Validators.required],
     imageUrl: ['', Validators.required],
@@ -33,7 +32,7 @@ export class AddEmployeeComponent {
           throw err;
         })
       ).subscribe(employee => {
-        this.addedEmployee.emit(employee);
+        this.closeClick();
       })
     }
   }

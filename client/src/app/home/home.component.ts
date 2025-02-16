@@ -10,9 +10,9 @@ import { EditEmployeeComponent } from '../components/edit-employee/edit-employee
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent implements OnInit {
-  public employees = signal<Employee[]>([]);
+export class HomeComponent {
   private employeeService = inject(EmployeeService);
+  public employees = this.employeeService.employees;
   public showModal = signal<string>('');
 
   public toggleShowModal(employeeId: string) {
@@ -30,13 +30,4 @@ export class HomeComponent implements OnInit {
       }
     })
   }
-
-  ngOnInit(): void {
-    this.employeeService.getEmployeesfunc().subscribe(employees => {
-      this.employees.set(employees);
-    });
-  }
-
-
-
 }
